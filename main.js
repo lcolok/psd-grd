@@ -157,9 +157,11 @@ function selectGradient(elem){
     $("#gradient-panel .active").removeClass("active");
     elem.addClass("active");
     $("#sample-box").attr("class", css_id);
+    var zpace =gradientSvgCreator.createZpaceGradientStyle(gradients[css_id]);
     var style = gradientCssCreator.createGradientStyle(gradients[css_id]);
     var svg = gradientSvgCreator.create(gradients[css_id]);
 
+    $("#zpace-info").val(zpace);
     $("#grad-info").val(style);
     $("#svg-info").val(svg);
 }
