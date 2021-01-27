@@ -80,8 +80,7 @@ var PSDGradient;
       return [begin_tag, stops, end_tag].join("\n");
     };
     SVGCreator.prototype.createZpaceGradeientStops = function (grad_obj) {
-      const obj = {};
-      grad_obj.gradient_stops
+      return grad_obj.gradient_stops
         .map(function (grad) {
           var color = grad.color_stop.color_obj.color;
           var lctn = (grad.color_stop.lctn * 100) / 4096;
@@ -108,9 +107,11 @@ var PSDGradient;
           }
         })
         .map((e) => {
-          obj[e.lctn] = `rgba(${e.rgba.join(",")})`;
+          const obj = {};
+          obj["rgba"] = `rgba(${e.rgba.join(",")})`;
+          obj["stop"] = e.lctn;
+          return obj;
         });
-      return obj;
     };
     SVGCreator.prototype.create = function (grad, options) {
       var begin_tag = '<linearGradient id="#id">';
